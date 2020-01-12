@@ -1,17 +1,10 @@
 const express = require('express')
 const route = express.Router()
-const dbConn = require('../../../util/db-config')
+const insertStudent = require('../../db-operations/insertStudent')
 
 route.post('/', async (req, res) => {
   try {
-    let {
-      usn,
-      fname,
-      lname,
-      department,
-      sem
-    } = req.body
-    let [results] = await dbConn.query(`insert into student values(?,?,?,?,?)`, [usn, fname, lname, department, sem])
+    let results = await insertStudent()
     if (results)
       res.redirect("/students")
   } catch (err) {

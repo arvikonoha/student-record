@@ -1,4 +1,4 @@
-module.exports = (nonPromiseFunction => {
+module.exports = (nonPromiseFunction) => {
   return async function (...rest) {
     nonPromiseFunction(...rest, (err, ...results) => {
       if (err)
@@ -7,4 +7,4 @@ module.exports = (nonPromiseFunction => {
         return Promise.resolve(...results)
     })
   }
-})
+}

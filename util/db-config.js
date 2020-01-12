@@ -1,4 +1,5 @@
 const mysql = require('mysql')
+const promisifier = require('./promisifier')
 const connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -12,9 +13,8 @@ connection.connect(err => {
     console.log(err)
     return
   }
+  connection.query = promisifier(connection.query)
   console.log("Database connected")
 })
-
-
 
 module.exports = connection

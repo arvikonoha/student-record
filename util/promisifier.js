@@ -4,7 +4,7 @@ module.exports = (nonPromiseFunction => {
       if (err)
         return Promise.reject(err)
       else
-        return Promise.resolve(...rest)
+        return Promise.resolve(...results)
     })
   }
 })

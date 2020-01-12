@@ -15,6 +15,7 @@ route.post('/', async (req, res) => {
     if (results[0])
       res.redirect("/students")
   } catch (err) {
+    console.log(err)
     return res.render('errors', {
       message: err.sqlMessage
     })

@@ -13,7 +13,7 @@ connection.connect(err => {
     console.log(err)
     return
   }
-  connection.query = promisifier(connection.query.bind(connection))
+
   console.log("Database connected")
 })
 

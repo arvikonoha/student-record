@@ -1,10 +1,10 @@
 const mysql = require('mysql')
 const connection = mysql.createConnection({
-  host: 'db4free.net',
-  user: 'arvikonoha',
-  port: 3306,
-  password: 'nevergivup99',
-  database: 'student_records'
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  port: process.env.DATABASE_PORT,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME
 })
 
 connection.connect(err => {

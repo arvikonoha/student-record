@@ -1,7 +1,7 @@
 const dbConn = require('../../util/db-config')
 
 module.exports = async function updateStudent() {
-  dbconn.query("select * from student", (err, results) => {
+  dbConn.query("select * from student", (err, results) => {
     if (err)
       return Promise.reject(err)
     else

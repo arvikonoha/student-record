@@ -1,10 +1,13 @@
 const dbConn = require('../../util/db-config')
 
-module.exports = async function updateStudent() {
-  dbConn.query("select * from student", (err, results) => {
-    if (err)
-      return Promise.reject(err)
-    else
-      return Promise.resolve(results)
+module.exports = async function displayResults() {
+
+  return new Promise((resolve, reject) => {
+    dbConn.query("select * from student", (err, results) => {
+      if (err)
+        return reject(err)
+      console.log(results)
+      resolve(results)
+    })
   })
 }

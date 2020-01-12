@@ -5,7 +5,8 @@ const displayResults = require('../../db-operations/displayResults')
 route.get('/', async (req, res) => {
   try {
     let results = await displayResults()
-    res.render('students', {
+    console.log(results)
+    return res.render('students', {
       students: results
     })
   } catch (err) {

@@ -4,7 +4,18 @@ const insertStudent = require('../../db-operations/insertStudent')
 
 route.post('/', async (req, res) => {
   try {
-    let results = await insertStudent()
+    let {
+      usn,
+      fname,
+      lname,
+      department,
+      sem
+    } = req.body
+    let results = await insertStudent(usn,
+      fname,
+      lname,
+      department,
+      sem)
     if (results)
       res.redirect("/students")
   } catch (err) {

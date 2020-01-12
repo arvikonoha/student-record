@@ -2,16 +2,16 @@ const express = require('express')
 const route = express.Router()
 const dbconn = require('../../../util/db-config')
 
-route.get('/', (req, res) => {
-  dbconn.query("select * from student", (err, results) => {
-    if (err) {
-      console.log(err.stack)
-      return
-    }
+route.get('/', async (req, res) => {
+  try {
+    let results = await dbconn.query("select * from student")
     res.render('students', {
-      students: results
+      students: results[0]
     })
-  })
+  } catch (err) {
+    console.log(err.stack)
+    return
+  }
 })
 
 module.exports = route

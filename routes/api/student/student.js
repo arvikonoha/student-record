@@ -2,22 +2,23 @@ const express = require('express')
 const route = express.Router()
 const dbConn = require('../../../util/db-config')
 
-route.post('/', (req, res) => {
-  let {
-    usn,
-    fname,
-    lname,
-    department,
-    sem
-  } = req.body
-  dbConn.query(`insert into student values(?,?,?,?,?)`, [usn, fname, lname, department, sem], (err, results) => {
-    if (err) {
-      return res.render('errosrs', {
-        message: err.sqlMessage
-      })
-    }
-    res.redirect("/students")
-  })
+route.post('/', async (req, res) => {
+  try {
+    let {
+      usn,
+      fname,
+      lname,
+      department,
+      sem
+    } = req.body
+    let results = await dbConn.query(`insert into student values(?,?,?,?,?)`, [usn, fname, lname, department, sem])
+    if (results[0])
+      res.redirect("/students")
+  } catch (err) {
+    return res.render('errors', {
+      message: err.sqlMessage
+    })
+  }
 })
 
 module.exports = route

@@ -11,8 +11,8 @@ route.post('/', async (req, res) => {
       department,
       sem
     } = req.body
-    let results = await dbConn.query(`insert into student values(?,?,?,?,?)`, [usn, fname, lname, department, sem])
-    if (results[0])
+    let [results] = await dbConn.query(`insert into student values(?,?,?,?,?)`, [usn, fname, lname, department, sem])
+    if (results)
       res.redirect("/students")
   } catch (err) {
     console.log(err)

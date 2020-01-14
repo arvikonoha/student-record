@@ -1,16 +1,21 @@
 const express = require('express')
+const path = require("path")
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({
-  extended: true
+  extended: false
 }))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.use('/api/student', require('./routes/api/student/student'))
-app.use('/students', require('./routes/api/student/students'))
+app.use(express.static("public"))
+
+app.use('/', require('./routes/api/student/student'))
+app.use('/', require('./routes/api/images/image-updates'))
+app.use('/', require('./routes/view-students'))
+app.use('/', require('./routes/edit-student'))
 
 app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening to the port ${process.env.PORT||3000}`)

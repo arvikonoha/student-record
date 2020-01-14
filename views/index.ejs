@@ -7,7 +7,7 @@
 
 <body>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <form class="card p-3 mt-3" method="POST" action="api/student">
+    <form class="card p-3 mt-3" method="POST" enctype="multipart/form-data" action="api/student">
       <h3 class="mb-2">Enter your details</h3>
       <div class="form-group">
         <label for="fname">Enter your first name</label>
@@ -37,6 +37,10 @@
         <label for="usn">USN</label>
         <input type="text" id="usn" name="usn" aria-describedby="usnreadme" required />
         <small id="usnreadme">USN must be of the form 4nm17cs0xx</small>
+      </div>
+      <div class="form-group">
+        <label for="std-image">Add your image</label>
+        <input type="file" class="form-control-file" id="std-image" name="stdimg" required>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
